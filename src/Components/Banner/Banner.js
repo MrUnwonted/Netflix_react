@@ -6,15 +6,13 @@ import axios from '../../axios'
 
 function Banner() {
 
-    const [movie, setMovie] = useState()
-
-    useEffect(() => {
-      axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then((response)=>{
-        console.log(response.data.results[0]);
-        setMovie(response.data.results[3])
-      })
-
-    }, [])
+  const [movie,setMovie] = useState()
+  useEffect(() => {
+    const randomNumber =Math.floor(Math.random() * 20);
+    // console.log(randomNumber);
+    axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then((res)=>{
+       setMovie(res.data.results[randomNumber])})
+  },[])
     
 
   return (
